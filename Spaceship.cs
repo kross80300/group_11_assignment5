@@ -46,7 +46,8 @@ public class Spaceship
             {
                 _currentPause = 0f;
                 _isPaused = false;
-                _movingForward = !_movingForward;
+                _currentTime = 0f;
+                _movingForward = true;
             }
 
             return;
@@ -82,7 +83,7 @@ public class Spaceship
             return;
         }
         float progress = _currentTime / _totalTime;
-        if (progress >= 0f)
+        if (progress < 0f)
         {
             progress = 0f;
         }

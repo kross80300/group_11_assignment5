@@ -18,6 +18,7 @@ public class Game1 : Game
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
+        Window.AllowUserResizing = true;
     }
 
     protected override void Initialize()
@@ -35,10 +36,10 @@ public class Game1 : Game
         // TODO: use this.Content to load your game content here
         _spaceshipModel = Content.Load<Model>("meshes/shuttle");
 
-        Vector3 start = new Vector3(-300f, 0f, 0f);
-        Vector3 end = new Vector3(300f, 0f, 0f);
-        float travelTime = 5f;
-        float pauseTime = 3f;
+        Vector3 start = new Vector3(800f, 100f, 0f);
+        Vector3 end = new Vector3(-800f, 100f, 300f);
+        float travelTime = 8f;
+        float pauseTime = 4f;
         
         _spaceship = new Spaceship(_spaceshipModel, start, end, travelTime, pauseTime);
     }
@@ -60,7 +61,7 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.Black);
 
         // TODO: Add your drawing code here
-        Matrix view = Matrix.CreateLookAt(new Vector3(0, 50, 500),
+        Matrix view = Matrix.CreateLookAt(new Vector3(0, 300, 800),
             Vector3.Zero,
             Vector3.Up);
         
