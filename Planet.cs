@@ -27,6 +27,9 @@ namespace project5
             _currentRotation = 0f;
             _moons = new List<Moon>();
         }
+
+        public Vector3 Position { get; set; }
+
         public Vector3 GetPosition()
         {
             return _position;
@@ -54,7 +57,8 @@ namespace project5
         }
         public void Draw(Matrix view, Matrix projection)
         {
-            Matrix world = Matrix.CreateRotationY(_currentRotation) *
+            Matrix world = Matrix.CreateScale(0.1f) * 
+                Matrix.CreateRotationY(_currentRotation) *
                            Matrix.CreateTranslation(_position);
             foreach (var mesh in _mesh.Meshes)
             {
