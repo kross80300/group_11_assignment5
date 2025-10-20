@@ -36,8 +36,8 @@ public class Game1 : Game
         // TODO: use this.Content to load your game content here
         _spaceshipModel = Content.Load<Model>("meshes/shuttle");
 
-        Vector3 start = new Vector3(800f, 100f, 0f);
-        Vector3 end = new Vector3(-800f, 100f, 300f);
+        Vector3 start = new Vector3(800f, 0f, 0f);
+        Vector3 end = new Vector3(-800f, -100f, 300f);
         float travelTime = 8f;
         float pauseTime = 4f;
         
