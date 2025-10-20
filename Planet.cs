@@ -16,29 +16,36 @@ namespace project5
         private float _rotationSpeed;
         private float _currentRotation;
         private List<Moon> _moons;
-        public Planet(Model mesh, Vector3 center, float orbitRadius, float rotationSpeed, float orbitSpeed)
+        private float _orbitOffset;
+        private float _scale;
+
+        public Planet(Model mesh, Vector3 center, float orbitRadius, float rotationSpeed, float orbitSpeed, float orbitOffset = 0f, float scale = 1f)
         {
             _mesh = mesh;
             _center = center;
             _orbitRadius = orbitRadius;
             _rotationSpeed = rotationSpeed;
             _orbitSpeed = orbitSpeed;
+            _orbitOffset = orbitOffset;
+            _scale = scale;
             _position = center + new Vector3(orbitRadius, 0, 0);
             _currentRotation = 0f;
             _moons = new List<Moon>();
         }
 
-        public Vector3 Position { get; set; }
+        public Vector3 Position { get { return _position; } }
 
         public Vector3 GetPosition()
         {
             return _position;
         }
+
         public void AddMoon(Moon moon)
         {
             if (moon != null)
                 _moons.Add(moon);
         }
+
         public void Update(GameTime gameTime)
         {
             float elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -46,19 +53,22 @@ namespace project5
             _currentRotation += _rotationSpeed * elapsedTime;
             _currentRotation %= MathHelper.TwoPi;
 
-            float orbitPos = _orbitSpeed * totalTime;
-            Vector3 idealPos = _center + new Vector3(_orbitRadius * (float)Math.Cos(orbitPos), 0f,
-            _orbitRadius * (float)Math.Sin(orbitPos)
+            float orbitPos = _orbitSpeed * totalTime + _orbitOffset;
+            Vector3 idealPos = _center + new Vector3(
+                _orbitRadius * (float)Math.Cos(orbitPos), 
+                0f,
+                _orbitRadius * (float)Math.Sin(orbitPos)
             );
             _position = Vector3.Lerp(_position, idealPos, 0.1f);
 
             foreach (var moon in _moons)
                 moon.Update(gameTime);
         }
+
         public void Draw(Matrix view, Matrix projection)
         {
-            Matrix world = Matrix.CreateScale(0.1f) * 
-                Matrix.CreateRotationY(_currentRotation) *
+            Matrix world = Matrix.CreateScale(_scale) * 
+                           Matrix.CreateRotationY(_currentRotation) *
                            Matrix.CreateTranslation(_position);
             foreach (var mesh in _mesh.Meshes)
             {

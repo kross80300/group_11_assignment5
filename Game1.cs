@@ -45,9 +45,9 @@ namespace group_11_assignment5
             Model planet2Mesh = Content.Load<Model>("meshes/planet2");
             Model planet3Mesh = Content.Load<Model>("meshes/planet3");
             
-            Planet planet1 = new Planet(planet1Mesh, Vector3.Zero, 80f, 1f, MathHelper.TwoPi / 6f);
-            Planet planet2 = new Planet(planet2Mesh, Vector3.Zero, 150f, 0.8f, MathHelper.TwoPi / 12f);
-            Planet planet3 = new Planet(planet3Mesh, Vector3.Zero, 220f, 0.6f, MathHelper.TwoPi / 18f);
+            Planet planet1 = new Planet(planet1Mesh, Vector3.Zero, 150f, 1f, MathHelper.TwoPi / 8f, 0f, 1.2f);   
+            Planet planet2 = new Planet(planet2Mesh, Vector3.Zero, 300f, 0.8f, MathHelper.TwoPi / 12f, MathHelper.Pi / 2f, 5.0f); 
+            Planet planet3 = new Planet(planet3Mesh, Vector3.Zero, 450f, 0.6f, MathHelper.TwoPi / 16f, MathHelper.Pi, 0.2f);    
 
             _planets.Add(planet1);
             _planets.Add(planet2);
@@ -58,9 +58,8 @@ namespace group_11_assignment5
             Model Moon1Mesh = Content.Load<Model>("meshes/moon1");
             Model Moon2Mesh = Content.Load<Model>("meshes/moon2");
             
-            // Use smaller moon orbit radii
-            _moons.Add(new Moon(Moon1Mesh, 15f, planet1, 1f, MathHelper.TwoPi / 6f));
-            _moons.Add(new Moon(Moon2Mesh, 20f, planet2, 1f, MathHelper.TwoPi / 12f));
+            _moons.Add(new Moon(Moon1Mesh, 20f, planet1, 1.5f, MathHelper.TwoPi / 4f));
+            _moons.Add(new Moon(Moon2Mesh, 30f, planet2, 1.2f, MathHelper.TwoPi / 6f));
         }
 
         protected override void Update(GameTime gameTime)
@@ -84,8 +83,8 @@ namespace group_11_assignment5
         {
             GraphicsDevice.Clear(Color.Black);
             
-            Matrix view = Matrix.CreateLookAt(new Vector3(0, 200, 400),
-                Vector3.Zero,
+            Matrix view = Matrix.CreateLookAt(new Vector3(0, 600, 1000),
+                new Vector3(0, 0, 0),
                 Vector3.Up);
 
             Matrix projection = Matrix.CreatePerspectiveFieldOfView(
