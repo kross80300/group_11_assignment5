@@ -1,0 +1,23 @@
+The animation is a scene set in space where moons orbit planets and a space ship flies across screen.
+
+Team Member Objects and Appearances
+Katie: Spaceship
+Spencer: Moons
+Anunay: Planets
+
+Object Animations
+Moons orbit the planets as the spaceship flies across the screen. Moons and planets rotate as they orbit. Planets orbit a central point and moons orbit planets. Spaceship flies across the scene then pauses off screen then returns on the same looping path. All classes use a lerp method.\
+
+Classes and Structures:
+Each object is in its own class:
+
+Spaceship:
+- Displays and moves spaceship across the screen in front of the solar system type scene\
+Planet:
+- Displays, rotates and orbits planets around a central point\
+Moon:
+- Displays, rotates, and orbits moons around planets\
+
+Issues encountered:
+Scaling issues with planets
+Difficulty adding lighting adjustments
